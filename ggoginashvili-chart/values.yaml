@@ -1,0 +1,51 @@
+namespace: ggoginashvili
+studentName: ggoginashvili
+
+deployment:
+  replicaCount: 1
+  name: ggoginashvili-deployment
+  containerName: ggoginashvili-container
+  containerPort: 80
+  imageName: nginx
+  imageVersion: latest
+  limitsMemory: 200Mi
+  requestsMemory: 100Mi
+  limitsCpu: 1
+  requestsCpu: 200m
+  
+labels:
+  student: ggoginashvili
+  secondLabel: second
+
+service:
+  name: ggoginashvili-service
+  type: ClusterIP
+  port: 80
+
+serviceAccount:
+  name: ggoginashvili-service-account
+
+configMap:
+  name: ggoginashvili-config-map
+  index: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>Welcome to kubernetes</title>
+    </head>
+    <body>
+        <h1>kubernetes</h1>
+    </body>
+    </html>
+
+virtualService:
+  name: ggoginashvili-virtual-service
+  ingressGatewayName: istio-system/academy-istio-ingressgateway
+  
+role:
+  name: ggoginashvili-role
+
+roleBinding:
+  name: ggoginashvili-role-binding
+
+
